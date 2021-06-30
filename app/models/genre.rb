@@ -1,4 +1,6 @@
 class Genre < ActiveHash::Base
+  # GenreモデルにActiveHash::Baseを継承しました。
+  # Genreモデルに定義したオブジェクト（ジャンルのデータ）に対してActiveRecordのようなメソッドが使用できるようになります。
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '経済' },
@@ -11,8 +13,15 @@ class Genre < ActiveHash::Base
     { id: 9, name: 'グルメ' },
     { id: 10, name: 'その他' }
   ]
+# idは数字じゃないと読み込めない
+# nameはプルダウンのところで使われている
+# こことDBのnameやIDが一致していないと　NoMethodError in Articles#index　となる
  
    include ActiveHash::Associations
    has_many :articles
+  #  本当のデータベースとのアソシエーションを示している
+  # 今回の場合は一つのカテゴリーは複数の記事にまたがっている為has_manyとなる
  
   end
+
+  # 簡易データベースのようなもの、ここの情報は随時更新されない
